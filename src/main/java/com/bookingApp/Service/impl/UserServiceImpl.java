@@ -19,14 +19,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserRepository userRepository;
 
-
-    @Override
-    public Optional<User> getUserWithBooking(Long usersId) {
-
-            return userRepository.findUserWithBooking(usersId);
-
-    }
-
     @Override
     public User saveUser(User users) {
             users.setUserUniqueNumber(userUniqueIdGenerator());
@@ -50,6 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
     @Override
     public User updateUserById(Long id, User users) {
         Optional<User> users1 = userRepository.findById(id);
@@ -57,8 +50,8 @@ public class UserServiceImpl implements UserService {
         if (users1.isPresent()) {
              User originalUsers = users1.get();
 
-            if (Objects.nonNull(users.getUserName()) && !"".equalsIgnoreCase(users.getUserName())) {
-                originalUsers.setUserName(users.getUserName());
+            if (Objects.nonNull(users.getName()) && !"".equalsIgnoreCase(users.getName())) {
+                originalUsers.setName(users.getName());
             }
             if (Objects.nonNull(users.getEmail()) && !"".equalsIgnoreCase(users.getEmail())) {
                 originalUsers.setEmail(users.getEmail());
