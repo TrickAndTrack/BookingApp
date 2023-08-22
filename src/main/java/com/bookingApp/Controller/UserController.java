@@ -36,7 +36,7 @@ public class UserController {
 
     // http://localhost:8080/api/v2/users/name=name?mlvb
     @GetMapping("/users/name")
-    public ResponseEntity<List<User>> getUsersByName(@RequestParam String name) {
+    public ResponseEntity<List<User>> getLaptopsByName(@RequestParam String name) {
         return new ResponseEntity<List<User>>(userRepository.findByName(name), HttpStatus.OK);
     }
 

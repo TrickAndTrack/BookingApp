@@ -15,8 +15,6 @@ import java.util.List;
 @Data
 public class User {
 
-    // we need to add serializable
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,10 +22,9 @@ public class User {
     private String email;
     private String address;
     private String userUniqueNumber;
-//@OneToMany(targetEntity = User.class, cascade = CascadeType.ALL)
-  //  @OneToMany(mappedBy = "users")
-//    @JoinColumn(name="ub_fk", referencedColumnName = "id")
-//    private List<Booking> bookings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "users")
+    private List<Booking> bookings = new ArrayList<>();
 
 
 }
