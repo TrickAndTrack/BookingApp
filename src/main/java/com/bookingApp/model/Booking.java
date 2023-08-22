@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,9 +23,9 @@ public class Booking {
     private String userUniqueNumber;
     private String quantity;
     private double prize;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User users;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User users;
 
 
 }
