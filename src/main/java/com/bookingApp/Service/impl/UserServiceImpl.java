@@ -1,8 +1,11 @@
 package com.bookingApp.Service.impl;
 
+import com.bookingApp.Dto.UserBookingDto;
 import com.bookingApp.Service.UserService;
 import com.bookingApp.model.User;
 import com.bookingApp.repository.UserRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +22,9 @@ public class UserServiceImpl implements UserService {
     public static final String VALUE_PREFIX_PARAMETER="booking";
     @Autowired
     public UserRepository userRepository;
+
+    @Autowired(required = true)
+    private ModelMapper modelMapper;
 
     @Override
     public User saveUser(User users) {
@@ -75,6 +82,19 @@ public class UserServiceImpl implements UserService {
         String formattedDate = currentDate.format(formatter);
         return VALUE_PREFIX_PARAMETER+formattedDate;
     }
+
+//    @Override
+//    public List<UserBookingDto> getAllUsersBooking(){
+//        return userRepository.findAll()
+//                .stream()
+//                .map(this::convertEntityToDto)
+//                .collect(Collectors.toList());
+
+//    }
+
+
+
+
 
 
 }

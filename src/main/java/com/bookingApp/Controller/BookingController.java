@@ -14,6 +14,7 @@ public class BookingController {
     @Autowired
     private bookingService bookingService;
 
+    // http://localhost:8080/api/v1
     @PostMapping
     public Booking saveBooking(@RequestBody Booking booking) {
         return  bookingService.booking(booking);

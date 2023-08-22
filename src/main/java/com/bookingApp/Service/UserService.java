@@ -17,4 +17,5 @@ public interface UserService {
     User updateUserById(Long id, User users);
 
     String deleteUserById(Long id);
+//    List<UserBookingDto> getAllUsersBooking();
 }
