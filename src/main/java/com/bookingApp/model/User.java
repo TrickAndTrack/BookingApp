@@ -1,12 +1,13 @@
 package com.bookingApp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 
 @NoArgsConstructor
@@ -20,14 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @NotNull
     private String email;
+    @Size(max = 256, message = "address should have maximum 256 characters")
     private String address;
     private String userUniqueNumber;
-//@OneToMany(targetEntity = User.class, cascade = CascadeType.ALL)
-    //  @OneToMany(mappedBy = "users")
-//    @JoinColumn(name="ub_fk", referencedColumnName = "id")
-//    private List<Booking> bookings = new ArrayList<>();
-
-
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
 }

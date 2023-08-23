@@ -1,5 +1,6 @@
 package com.bookingApp.Controller;
 
+import com.bookingApp.Dto.UserBookingDto;
 import com.bookingApp.Service.UserService;
 import com.bookingApp.model.User;
 import com.bookingApp.repository.UserRepository;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v1")
 public class UserController {
 
     @Autowired
@@ -22,13 +23,13 @@ public class UserController {
 
 
     // http://localhost:8080/api/v2
-    @PostMapping
+    @PostMapping("/saveUser")
     public User saveUser(@RequestBody User users) {
         return userService.saveUser(users);
     }
 
    // http://localhost:8080/api/v2/users
-    @GetMapping("/users")
+    @GetMapping("/userList")
     public List<User> getAllUsers() {
         return userService.fetchAllUsers();
     }
@@ -55,16 +56,19 @@ public class UserController {
 
     // http://localhost:8080/api/v2/1
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        return userService.deleteUserById(id);
+    public ResponseEntity deleteUser(@PathVariable("id") Long id) {
+
+        userService.deleteUserById(id);
+        return  new ResponseEntity(HttpStatus.OK);
     }
 
-//http://localhost:8080/api/v2/user-booking
+    @GetMapping("/latestuser")
+    public List<UserBookingDto> getAlllatestUsers()
+    {
+        return userService.getAllUsers();
 
-//    @GetMapping("/user-booking")
-//    private List<UserBookingDto> getAllUserWithBooking(){
-//        return userService.getAllUsersBooking();
-//    }
+    }
+
 
 
 }

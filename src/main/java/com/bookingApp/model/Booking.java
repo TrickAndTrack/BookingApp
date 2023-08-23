@@ -19,13 +19,10 @@ public class Booking {
     private Long id;
     private String bookingItem;
     private String bookingUniqueNumber;
+
     @NotEmpty(message = "User Unique Id may not be empty")
     private String userUniqueNumber;
     private String quantity;
-    private double prize;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User users;
 
 
 }

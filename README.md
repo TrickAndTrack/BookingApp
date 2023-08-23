@@ -18,8 +18,8 @@ home
 * Banner-> Done
 * JPA -> Done
 * Dao layer ->
-* Custome exception with Global->
-* ResposneEnityt->
+* Custome exception with Global-> Done
+* ResposneEnityt-> Done
 * Mysql/MongoDB -> Done
 * Multithreading ->
 * serializable -> 

@@ -5,7 +5,6 @@ import com.bookingApp.Service.UserService;
 import com.bookingApp.model.User;
 import com.bookingApp.repository.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +18,17 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public static final String VALUE_PREFIX_PARAMETER="booking";
+    public static final String VALUE_PREFIX_PARAMETER="user";
     @Autowired
     public UserRepository userRepository;
 
-    @Autowired(required = true)
+    @Autowired(required=true)
     private ModelMapper modelMapper;
 
     @Override
     public User saveUser(User users) {
             users.setUserUniqueNumber(userUniqueIdGenerator());
+            users.setCreatedAt(LocalDateTime.now());
             return userRepository.save(users);
     }
 
@@ -83,14 +83,13 @@ public class UserServiceImpl implements UserService {
         return VALUE_PREFIX_PARAMETER+formattedDate;
     }
 
-//    @Override
-//    public List<UserBookingDto> getAllUsersBooking(){
-//        return userRepository.findAll()
-//                .stream()
-//                .map(this::convertEntityToDto)
-//                .collect(Collectors.toList());
-
-//    }
+    @Override
+    public List<UserBookingDto> getAllUsers(){
+        List<User> listUser = userRepository.findAll();
+        return listUser.stream()
+                .map(User -> modelMapper.map(User, UserBookingDto.class))
+                .collect(Collectors.toList());
+    }
 
 
 

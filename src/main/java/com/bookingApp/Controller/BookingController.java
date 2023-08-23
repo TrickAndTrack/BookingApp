@@ -1,12 +1,12 @@
 package com.bookingApp.Controller;
 
+import com.bookingApp.Dto.LatestBooking;
 import com.bookingApp.Service.bookingService;
 import com.bookingApp.model.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -15,9 +15,14 @@ public class BookingController {
     private bookingService bookingService;
 
     // http://localhost:8080/api/v1
-    @PostMapping
+    @PostMapping("/saveBooking")
     public Booking saveBooking(@RequestBody Booking booking) {
         return  bookingService.booking(booking);
+    }
+
+    @GetMapping("/bookingList")
+    public List<LatestBooking> getlatestUsers() {
+        return bookingService.getAllBookings();
     }
 
 }

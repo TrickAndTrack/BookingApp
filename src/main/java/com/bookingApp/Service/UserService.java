@@ -1,5 +1,6 @@
 package com.bookingApp.Service;
 
+import com.bookingApp.Dto.UserBookingDto;
 import com.bookingApp.model.User;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface UserService {
 
     String deleteUserById(Long id);
 //    List<UserBookingDto> getAllUsersBooking();
+
+
+    public List<UserBookingDto> getAllUsers();
 }
